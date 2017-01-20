@@ -12,7 +12,7 @@
   
    <servlet>
     <servlet-name>InboundStock2Magento</servlet-name>
-    <servlet-class>com.service.sendInboundStock2Magento</servlet-class>
+    <servlet-class>com.wmsapi.servlet.sendInboundStock2Magento</servlet-class>
   </servlet>
 
   <servlet-mapping>

@@ -26,10 +26,7 @@ success!!
 <p>
 
 <textarea id="msg" form="call1" name="msg" rows="30" cols="50" >
-
 </textarea>
-
-
 </form>
 </body>
 </html>
