@@ -13,12 +13,13 @@
 	String command	= StringUtil.nullTo(request.getParameter("command"),"");
 
 	String resultMessage = null;
-	
+	String id = null;
+	String password = null;
 	if (command.equals("login")) {
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
-		String password = request.getParameter("password");
-		resultMessage = jsonDAO.validateID();
+		id = request.getParameter("email");
+		password = request.getParameter("password");
+		resultMessage = jsonDAO.validateID(id, password);
 	} else {
 		//resultMessage.add(0, "Anyway... FAIL!!");
 	}

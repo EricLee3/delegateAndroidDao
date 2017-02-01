@@ -30,8 +30,9 @@ public class sampleLogin {
 	} 
 	
 //	public List<Object> selectBrand() throws IOException {
-	public String validateID() throws IOException {
+	public String validateID(String email, String password) throws IOException {
 		String methodName ="com.service.sampleLogin()";
+		String result = null;
 		Logger.debug(methodName);
 		
 		Connection 			conn	= null;
@@ -49,26 +50,21 @@ public class sampleLogin {
 			conn = DataBaseManager.getConnection();
 			
 			sqlBuffer.append(" SELECT  *            ");  
-			sqlBuffer.append(" FROM    CMUSER		");
+			sqlBuffer.append(" FROM    CSUSER		");
 			sqlBuffer.append(" where   user_id = ? and user_pwd = ? ");
 			
 			
 			pstmt = conn.prepareStatement(sqlBuffer.toString());
-			pstmt.setString(1, "a");
-			pstmt.setString(2, "b");
+			pstmt.setString(1, email);
+			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			
-			jsArray = new JSONArray();
-				while(rs.next())
-				{
-					JSONObject jsObj = new JSONObject();
-					jsObj.put("BRAND_NM", rs.getString("BRAND_NM"));
-					jsArray.add(jsObj);
-//					hm = new HashMap();
-//					hm.put("BRAND_NM", rs.getString("BRAND_NM"));
-//					vendorList.add(hm);
-				}
-			
+			if (rs.next())  {
+				result = "valid user id";
+			} else  {
+				result = "invalid user id or password";
+			}
+		
 		} catch(Exception e) {
 			Logger.debug("###Error###:"+ methodName +" Error :"+ e.toString());
 		} finally {
@@ -86,6 +82,6 @@ public class sampleLogin {
 			}
 		}
 		
-		return jsArray.toString();
+		return result;
 	}
 }
