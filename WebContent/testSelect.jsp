@@ -14,10 +14,10 @@
 
 	String resultMessage = null;
 	
-	if (command.equals("LoadData")) {
+	if (command.equals("LoadData"))  {
 		resultMessage = jsonDAO.selectBrand();
-	} else {
-		//resultMessage.add(0, "Anyway... FAIL!!");
+	} else if (command.equals("LoadStock"))  {
+		resultMessage = jsonDAO.selectStock();
 	}
 	
 %>
