@@ -28,5 +28,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ezmorph-1.0.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils-1.8.3.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/postgresql-9.4.1212.jre7.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
