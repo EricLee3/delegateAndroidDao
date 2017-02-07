@@ -7,17 +7,19 @@
 <%@ page import="org.apache.commons.httpclient.methods.PostMethod" %>
 <%@ page import="org.apache.commons.httpclient.HttpClient" %>
 <%@ page import="org.apache.commons.httpclient.HttpException" %>
+<%@page import="java.net.URLDecoder"%>
 <%
 	sampleSelect jsonDAO	= sampleSelect.getInstance();
 
 	String command	= StringUtil.nullTo(request.getParameter("command"),"");
 
 	String resultMessage = null;
-	
+	String strBrandNm = null;
 	if (command.equals("LoadData"))  {
 		resultMessage = jsonDAO.selectBrand();
 	} else if (command.equals("LoadStock"))  {
-		resultMessage = jsonDAO.selectStock();
+		strBrandNm = new String(request.getParameter("brandNm").getBytes("8859_1"), "UTF-8");
+		resultMessage = jsonDAO.selectStock(strBrandNm);
 	}
 	
 %>

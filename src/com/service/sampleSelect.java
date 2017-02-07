@@ -78,7 +78,7 @@ public class sampleSelect {
 		return jsArray.toString();
 	}
 
-	public String selectStock() throws IOException {
+	public String selectStock(String strBrandNm) throws IOException {
 		String methodName ="com.service.sampleSelect.selectBrand()";
 		Logger.debug(methodName);
 		
@@ -96,12 +96,14 @@ public class sampleSelect {
 		{ 
 			conn = DataBaseManager.getConnection();
 			
-			sqlBuffer.append(" SELECT  CENTER_CD, ITEM_CD, ITEM_STATE, SUM(STOCK_QTY) AS STOCK_QTY FROM LS010NM ");  
-			sqlBuffer.append(" WHERE BRAND_CD = ?			 ");
+			sqlBuffer.append(" SELECT  CENTER_CD, ITEM_CD, ITEM_STATE, SUM(STOCK_QTY) AS STOCK_QTY FROM LS010NM A ");  
+			sqlBuffer.append(" join CMBRAND B ON A.BRAND_CD = B.BRAND_CD  ");  
+			sqlBuffer.append(" WHERE B.BRAND_NM = ?			 ");
+//			sqlBuffer.append(" and rownum < 100			 ");
 			sqlBuffer.append(" GROUP BY CENTER_CD, ITEM_CD, ITEM_STATE			 ");
 			
 			pstmt = conn.prepareStatement(sqlBuffer.toString());
-			pstmt.setString(1, "6544");
+			pstmt.setString(1, strBrandNm);
 			rs = pstmt.executeQuery();
 			
 			jsArray = new JSONArray();
