@@ -15,11 +15,17 @@
 
 	String resultMessage = null;
 	String strBrandNm = null;
+	String strOutboundDate = null;
+	
 	if (command.equals("LoadData"))  {
 		resultMessage = jsonDAO.selectBrand();
 	} else if (command.equals("LoadStock"))  {
 		strBrandNm = new String(request.getParameter("brandNm").getBytes("8859_1"), "UTF-8");
 		resultMessage = jsonDAO.selectStock(strBrandNm);
+	} else if (command.equals("LoadOutboundOrder"))  {
+		strBrandNm = new String(request.getParameter("brandNm").getBytes("8859_1"), "UTF-8");
+		strOutboundDate = request.getParameter("outboundDate");
+		resultMessage = jsonDAO.selectOutbound(strBrandNm);
 	}
 	
 %>
